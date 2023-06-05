@@ -1,0 +1,51 @@
+--Oldest Users
+select top(5) created_at, username from users
+order by date asc;
+
+--oldest 5 users
+select top(5) created_at as CREATED_ON, username as USER_NAME
+from users
+order by created_at asc; 
+
+--Declaring Contest Winner
+SELECT photo_id, COUNT(*) AS count
+FROM likes
+GROUP BY photo_id
+order by count desc;
+
+--Top 5 most commonly used hashtags
+select tag_id as TAG_ID, count(*) as COUNT_OF_TAG
+from photo_tags
+group by tag_id
+order by COUNT_OF_TAG desc;
+
+select id as TAG_ID, tag_name as NAME_OF_TAG from tags
+where id in(21,20,17, 13,11)
+order by TAG_ID desc;
+
+
+--FOR INVESTORS
+
+--Number of users
+select Count(id) as TOTAL_USERS from users;
+
+--Total Number of users
+select user_id, count(*) as Post_Frequency
+from photos
+group by user_id;
+
+--Average Posting frequency of active users
+SELECT AVG(Post_Frequency) AS Average_Post_Frequency
+FROM (
+    SELECT user_id, COUNT(*) AS Post_Frequency
+    FROM photos
+    GROUP BY user_id
+) AS subquery;
+
+--Detecting BOTS
+SELECT USER_ID as BOT_ID
+FROM likes
+GROUP BY user_id
+HAVING COUNT(*) = 257
+order by user_id desc;
+
