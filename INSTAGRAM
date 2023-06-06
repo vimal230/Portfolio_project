@@ -1,6 +1,6 @@
---Oldest Users
-select top(5) created_at, username from users
-order by date asc;
+
+
+
 
 --oldest 5 users
 select top(5) created_at as CREATED_ON, username as USER_NAME
